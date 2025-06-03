@@ -1,0 +1,14 @@
+# dependencies
+node_modules
+
+# dotenv environment variables
+.env
+
+# logs
+logs
+*.log
+
+# system files
+.DS_Store
+node_modules
+.env

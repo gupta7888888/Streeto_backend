@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
 
+
 dotenv.config();
 const app = express();
 connectDB();
@@ -17,6 +18,10 @@ const authRoutes = require('./routes/auth/auth.routes');
 app.use('/api/auth', authRoutes);
 const userRoutes = require('./routes/user/user.routes');
 app.use('/api/user', userRoutes);
+const healthRoutes = require('./routes/health')
+app.use('/api/health', healthRoutes);
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(5000, '0.0.0.0', () => console.log('Server running on 5000'));

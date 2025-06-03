@@ -1,0 +1,3 @@
+sudo swapon /dev/zram0
+
+sudo mkswap /dev/zram0

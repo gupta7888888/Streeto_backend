@@ -1,0 +1,121 @@
+Awesome, let’s map out how your **validators folder and files** can look like for your 12 models, and what each validator will do.
+
+---
+
+# Suggested Validator File Structure for 12 Models
+
+```
+/validators
+  ├─ userValidator.js
+  ├─ productValidator.js
+  ├─ orderValidator.js
+  ├─ earningsValidator.js
+  ├─ feedbackValidator.js
+  ├─ categoryValidator.js
+  ├─ notificationValidator.js
+  ├─ referralValidator.js
+  ├─ reviewValidator.js
+  ├─ settingsValidator.js
+  ├─ storeValidator.js
+  └─ commonValidators.js  (shared validation utils, e.g., for ObjectId, email)
+```
+
+---
+
+# What each validator file **does**:
+
+### 1. **userValidator.js**
+
+* Validate user registration & update data
+* Check required fields (email, password, role, mobile, etc.)
+* Validate formats (email, phone, password strength)
+* Validate role enum (customer, seller, etc.)
+* Validate nested address and preferences fields
+
+### 2. **productValidator.js**
+
+* Validate product creation and updates
+* Required fields: name, price, category, storeId
+* Validate price, discount ranges
+* Validate variants format and availability
+* Validate nutrition object if present
+
+### 3. **orderValidator.js**
+
+* Validate order creation and updates
+* Validate userId, storeId presence and format
+* Validate items array (productId, quantity, priceAtOrder, variant)
+* Validate pricing breakdown (subtotal, total, tax)
+* Validate status and payment enums
+
+### 4. **earningsValidator.js**
+
+* Validate seller earnings updates or fetch requests
+* Check sellerId and earned amount fields
+
+### 5. **feedbackValidator.js**
+
+* Validate feedback submission
+* Required: user, message
+* Optional: orderId, category enum, priority enum, attachments URLs
+* Validate response and resolved flags for admins
+
+### 6. **categoryValidator.js**
+
+* Validate category creation and edits
+* Required: name, unique slug
+* Validate parentCategory ObjectId if provided
+* Validate SEO metadata structure
+
+### 7. **notificationValidator.js**
+
+* Validate notification creation
+* Required: userId, title, message
+* Validate type enum (order, promo, system, etc.)
+* Optional: read status, sentBy, scheduledAt timestamps
+
+### 8. **referralValidator.js**
+
+* Validate referral code generation and usage
+* Required: code, referredBy or referredUser depending on flow
+* Validate reward amounts and status flags
+
+### 9. **reviewValidator.js**
+
+* Validate reviews creation
+* Required: user, product, rating (1-5)
+* Optional: comment, isVerified flag (usually admin controlled)
+
+### 10. **settingsValidator.js**
+
+* Validate system settings CRUD
+* Required: unique key, value (mixed type)
+* Optional: description, isActive flag
+
+### 11. **storeValidator.js**
+
+* Validate store creation and updates
+* Required: owner, name, address fields
+* Validate openingHours format, contact info, isActive
+
+### 12. **commonValidators.js**
+
+* Common reusable validators like:
+
+  * ObjectId format validation
+  * Email format
+  * Phone number
+  * Password strength
+  * Date/time format
+
+---
+
+# How to use validators:
+
+* For each model’s **create** and **update** routes, use the corresponding validator functions to validate incoming request data.
+* Validators can return errors early, preventing bad data from hitting your database or business logic.
+* Use a validation library like **Joi**, **Yup**, or **express-validator** to implement these validators efficiently.
+
+---
+
+Would you want me to help outline or generate example validation logic for any specific model next?

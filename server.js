@@ -20,6 +20,8 @@ const userRoutes = require('./routes/user/user.routes');
 app.use('/api/user', userRoutes);
 const healthRoutes = require('./routes/health')
 app.use('/api/health', healthRoutes);
+const storeRoutes = require('./routes/store/storeRoutes');
+app.use('/api/stores', storeRoutes);
 
 
 
